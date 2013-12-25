@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -e
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+# config
+VERSION="4.1.4"
+
+# Buildpack URL
+FILE_NAME=libreoffice${VERSION}_x86-64.tar.gz
+BUILDPACK_LIBREOFFICE_PACKAGE=https://sourceforge.net/projects/herokubuildpacklibreoffice/files/${FILE_NAME}
+ARCHIVE_NAME=opt/libreoffice4.1
+
+mkdir -p $CACHE_DIR
+if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
+  echo "-----> LibreOffice: Downloading LibreOffice ${VERSION} binaries from ${BUILDPACK_LIBREOFFICE_PACKAGE}"
+  curl -L $BUILDPACK_LIBREOFFICE_PACKAGE -o $CACHE_DIR/$FILE_NAME
+fi
+
+echo "-----> LibreOffice: Extracting LibreOffice ${VERSION} binaries to ${BUILD_DIR}/vendor/libreoffice"
+mkdir -p $CACHE_DIR/$ARCHIVE_NAME
+mkdir -p $BUILD_DIR/vendor
+tar xzf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
+mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/libreoffice
