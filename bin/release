@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 # bin/release <build-dir>
-
-BUILD_DIR=$1
-
-cat <<EOF
----
-config_vars:
-  PATH: /app/vendor/libreoffice/program:/app/vendor/libreoffice/deps/bin
-  LD_LIBRARY_PATH: /app/vendor/libreoffice/deps/lib
+cat << EOF
+addons: []
+default_process_types: {}
 EOF
