@@ -41,8 +41,11 @@ tar xzf $CACHE_DIR/$DEPS_FILE_NAME -C $CACHE_DIR
 mv $CACHE_DIR/$DEPS_ARCHIVE_NAME $BUILD_DIR/vendor/libreoffice/deps
 
 echo "-----> LibreOffice: Setting PATH and LD_LIBRARY_PATH"
+PROFILE_PATH="$BUILD_DIR/.profile.d/libreoffice.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+
 # add vendor binaries to the path
-export PATH="$HOME/vendor/libreoffice/program:/app/vendor/libreoffice/deps/bin:$PATH"
+echo 'export PATH="$HOME/vendor/libreoffice/program:/app/vendor/libreoffice/deps/bin:$PATH"' >> $PROFILE_PATH
 
 # configure LD_LIBRARY_PATH to include dependencies
-export LD_LIBRARY_PATH="$HOME/vendor/libreoffice/deps/lib:$LD_LIBRARY_PATH"
+echo 'export LD_LIBRARY_PATH="$HOME/vendor/libreoffice/deps/lib:$LD_LIBRARY_PATH"' >> $PROFILE_PATH
