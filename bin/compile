@@ -8,10 +8,15 @@ CACHE_DIR=$2
 # config
 VERSION="4.1.4"
 
-# Buildpack URL
+# LibreOffice Binaries URL
 FILE_NAME=libreoffice${VERSION}_x86-64.tar.gz
 BUILDPACK_LIBREOFFICE_PACKAGE=https://sourceforge.net/projects/herokubuildpacklibreoffice/files/${FILE_NAME}
 ARCHIVE_NAME=opt/libreoffice4.1
+
+# LibreOffice Dependencies URL
+DEPS_FILE_NAME=libreoffice_deps.tar.gz
+DEPS_BUILDPACK_LIBREOFFICE_PACKAGE=https://sourceforge.net/projects/herokubuildpacklibreoffice/files/${DEPS_FILE_NAME}
+DEPS_ARCHIVE_NAME=app/vendor/libreoffice/deps
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
@@ -19,10 +24,20 @@ if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   curl -L $BUILDPACK_LIBREOFFICE_PACKAGE -o $CACHE_DIR/$FILE_NAME
 fi
 
+if ! [ -e $CACHE_DIR/$DEPS_FILE_NAME ]; then
+  echo "-----> LibreOffice: Downloading LibreOffice dependencies (gettext, dbus, libffi, glib, dbus-glib) from ${DEPS_BUILDPACK_LIBREOFFICE_PACKAGE}"
+  curl -L $DEPS_BUILDPACK_LIBREOFFICE_PACKAGE -o $CACHE_DIR/$DEPS_FILE_NAME
+fi
+
 echo "-----> LibreOffice: Extracting LibreOffice ${VERSION} binaries to ${BUILD_DIR}/vendor/libreoffice"
 mkdir -p $CACHE_DIR/$ARCHIVE_NAME
 mkdir -p $BUILD_DIR/vendor
 tar xzf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
 mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/libreoffice
+
+echo "-----> LibreOffice: Extracting LibreOffice dependencies to ${BUILD_DIR}/vendor/libreoffice/deps"
+mkdir -p $CACHE_DIR/$DEPS_ARCHIVE_NAME
+tar xzf $CACHE_DIR/$DEPS_FILE_NAME -C $CACHE_DIR
+mv $CACHE_DIR/$DEPS_ARCHIVE_NAME $BUILD_DIR/vendor/libreoffice/deps
 
 PATH=$PATH:$build_dir/vendor/libreoffice/program
