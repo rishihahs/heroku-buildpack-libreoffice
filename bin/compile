@@ -39,5 +39,3 @@ echo "-----> LibreOffice: Extracting LibreOffice dependencies to ${BUILD_DIR}/ve
 mkdir -p $CACHE_DIR/$DEPS_ARCHIVE_NAME
 tar xzf $CACHE_DIR/$DEPS_FILE_NAME -C $CACHE_DIR
 mv $CACHE_DIR/$DEPS_ARCHIVE_NAME $BUILD_DIR/vendor/libreoffice/deps
-
-PATH=$PATH:$build_dir/vendor/libreoffice/program
