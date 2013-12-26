@@ -39,3 +39,9 @@ echo "-----> LibreOffice: Extracting LibreOffice dependencies to ${BUILD_DIR}/ve
 mkdir -p $CACHE_DIR/$DEPS_ARCHIVE_NAME
 tar xzf $CACHE_DIR/$DEPS_FILE_NAME -C $CACHE_DIR
 mv $CACHE_DIR/$DEPS_ARCHIVE_NAME $BUILD_DIR/vendor/libreoffice/deps
+
+# add vendor binaries to the path
+export PATH="$HOME/vendor/libreoffice/program:/app/vendor/libreoffice/deps/bin:$PATH"
+
+# configure LD_LIBRARY_PATH to include dependencies
+export LD_LIBRARY_PATH="$HOME/vendor/libreoffice/deps/lib:$LD_LIBRARY_PATH"
