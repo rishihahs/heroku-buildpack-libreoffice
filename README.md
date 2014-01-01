@@ -37,7 +37,7 @@ Make sure you create a dummy `pom.xml` (as shown above in Usage), and after push
     
 The binaries will be in `$temp_dir/release`.
 
-Licence
+License
 --------
 
-Licenced under the MIT Licence. See `LICENCE` file.
+Licensed under the MIT License. See `LICENSE` file.
