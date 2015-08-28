@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # The current LibreOffice version
-VERSION="4.1.4"
+VERSION="4.4.5"
 
 # Official download for .debs
-DEB_DOWNLOAD_URL="http://download.documentfoundation.org/libreoffice/stable/4.1.4/deb/x86_64/LibreOffice_${VERSION}_Linux_x86-64_deb.tar.gz"
+DEB_DOWNLOAD_URL="http://download.documentfoundation.org/libreoffice/stable/${VERSION}/deb/x86_64/LibreOffice_${VERSION}_Linux_x86-64_deb.tar.gz"
 GETTEXT_DOWNLOAD_URL="http://ftp.gnu.org/pub/gnu/gettext/gettext-0.18.3.1.tar.gz"
 DBUS_DOWNLOAD_URL="http://dbus.freedesktop.org/releases/dbus/dbus-1.6.18.tar.gz"
 LIBFFI_DOWNLOAD_URL="ftp://sourceware.org/pub/libffi/libffi-3.0.13.tar.gz"

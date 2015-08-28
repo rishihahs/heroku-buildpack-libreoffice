@@ -6,16 +6,16 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 # config
-VERSION="4.1.4"
+VERSION="4.4.5"
 
 # LibreOffice Binaries URL
-FILE_NAME=libreoffice${VERSION}_x86-64.tar.gz
-BUILDPACK_LIBREOFFICE_PACKAGE=https://sourceforge.net/projects/herokubuildpacklibreoffice/files/${FILE_NAME}
-ARCHIVE_NAME=opt/libreoffice4.1
+FILE_NAME=libreoffice${VERSION}_x86-64.tar
+BUILDPACK_LIBREOFFICE_PACKAGE=https://s3.amazonaws.com/buildpack-libreoffice/${FILE_NAME}
+ARCHIVE_NAME=opt/libreoffice${VERSION}
 
 # LibreOffice Dependencies URL
-DEPS_FILE_NAME=libreoffice_deps.tar.gz
-DEPS_BUILDPACK_LIBREOFFICE_PACKAGE=https://sourceforge.net/projects/herokubuildpacklibreoffice/files/${DEPS_FILE_NAME}
+DEPS_FILE_NAME=libreoffice_deps.tar
+DEPS_BUILDPACK_LIBREOFFICE_PACKAGE=https://s3.amazonaws.com/buildpack-libreoffice/${DEPS_FILE_NAME}
 DEPS_ARCHIVE_NAME=app/vendor/libreoffice/deps
 
 mkdir -p $CACHE_DIR
