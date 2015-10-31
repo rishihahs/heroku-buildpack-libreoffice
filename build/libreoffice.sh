@@ -16,7 +16,7 @@ GLU_DOWNLOAD_URL="ftp://ftp.freedesktop.org/pub/mesa/glu/glu-9.0.0.tar.gz"
 
 # File names
 LIBREOFFICE_BINARIES_FILE="libreoffice${VERSION}_x86-64.tar.gz"
-DEPS_FILE="libreoffice_deps.tar.gz"
+DEPS_FILE="libreoffice${VERSION}_x86-64_deps.tar.gz"
 
 PREFIX=/app/vendor/libreoffice/deps
 mkdir -p $PREFIX

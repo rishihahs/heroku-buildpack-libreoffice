@@ -15,7 +15,7 @@ BUILDPACK_LIBREOFFICE_PACKAGE=https://s3-eu-west-1.amazonaws.com/libreoffice-her
 ARCHIVE_NAME=opt/libreoffice${VERSION}
 
 # LibreOffice Dependencies URL
-DEPS_FILE_NAME=libreoffice_deps.tar.gz
+DEPS_FILE_NAME=libreoffice${VERSION}_x86-64_deps.tar.gz
 DEPS_BUILDPACK_LIBREOFFICE_PACKAGE=https://s3-eu-west-1.amazonaws.com/libreoffice-heroku-buildpack/${DEPS_FILE_NAME}
 DEPS_ARCHIVE_NAME=app/vendor/libreoffice/deps
 
