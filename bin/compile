@@ -6,16 +6,17 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 # config
-VERSION="4.4.5"
+VERSION="5.0.2"
+MINOR_VERSION="5.0"
 
 # LibreOffice Binaries URL
-FILE_NAME=libreoffice${VERSION}_x86-64.tar
-BUILDPACK_LIBREOFFICE_PACKAGE=https://s3.amazonaws.com/buildpack-libreoffice/${FILE_NAME}
+FILE_NAME=libreoffice${VERSION}_x86-64.tar.gz
+BUILDPACK_LIBREOFFICE_PACKAGE=https://s3-eu-west-1.amazonaws.com/libreoffice-heroku-buildpack/${FILE_NAME}
 ARCHIVE_NAME=opt/libreoffice${VERSION}
 
 # LibreOffice Dependencies URL
-DEPS_FILE_NAME=libreoffice_deps.tar
-DEPS_BUILDPACK_LIBREOFFICE_PACKAGE=https://s3.amazonaws.com/buildpack-libreoffice/${DEPS_FILE_NAME}
+DEPS_FILE_NAME=libreoffice${VERSION}_x86-64_deps.tar.gz
+DEPS_BUILDPACK_LIBREOFFICE_PACKAGE=https://s3-eu-west-1.amazonaws.com/libreoffice-heroku-buildpack/${DEPS_FILE_NAME}
 DEPS_ARCHIVE_NAME=app/vendor/libreoffice/deps
 
 mkdir -p $CACHE_DIR
@@ -31,9 +32,9 @@ fi
 
 echo "-----> LibreOffice: Extracting LibreOffice ${VERSION} binaries to ${BUILD_DIR}/vendor/libreoffice"
 mkdir -p $CACHE_DIR/$ARCHIVE_NAME
-mkdir -p $BUILD_DIR/vendor
-tar xzf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
-mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/libreoffice
+mkdir -p $BUILD_DIR/vendor/
+tar xzf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR/$ARCHIVE_NAME
+mv ${CACHE_DIR}/${ARCHIVE_NAME}/opt/libreoffice${MINOR_VERSION} $BUILD_DIR/vendor/libreoffice
 
 echo "-----> LibreOffice: Extracting LibreOffice dependencies to ${BUILD_DIR}/vendor/libreoffice/deps"
 mkdir -p $CACHE_DIR/$DEPS_ARCHIVE_NAME
