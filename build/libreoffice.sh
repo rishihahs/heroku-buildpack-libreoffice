@@ -132,6 +132,18 @@ make
 make install
 cd ${temp_dir}
 
+echo "Removing dependency files"
+# Only removing files that we are sure we won't need and are worth removing
+# eg. saving megabytes and are only needed when compiling or other interactive usage
+rm -rf ${PREFIX}/lib/*.a
+rm -rf ${PREFIX}/lib/*.la
+rm -rf ${PREFIX}/share/gtk-doc
+rm -rf ${PREFIX}/share/locale
+rm -rf ${PREFIX}/share/doc
+rm -rf ${PREFIX}/share/info
+rm -rf ${PREFIX}/bin
+rm -rf ${PREFIX}/include
+
 # Compress all dependencies
 tar pczf ${DEPS_FILE} ${PREFIX}
 mv ${DEPS_FILE} release/${DEPS_FILE}
