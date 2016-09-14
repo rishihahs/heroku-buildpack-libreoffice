@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # The current LibreOffice version
-VERSION="5.0.2"
+VERSION="5.2.1"
 
 # Official download for .debs
 DEB_DOWNLOAD_URL="http://download.documentfoundation.org/libreoffice/stable/${VERSION}/deb/x86_64/LibreOffice_${VERSION}_Linux_x86-64_deb.tar.gz"
@@ -131,6 +131,18 @@ cd ${archive_name}
 make
 make install
 cd ${temp_dir}
+
+echo "Removing dependency files"
+# Only removing files that we are sure we won't need and are worth removing
+# eg. saving megabytes and are only needed when compiling or other interactive usage
+rm -rf ${PREFIX}/lib/*.a
+rm -rf ${PREFIX}/lib/*.la
+rm -rf ${PREFIX}/share/gtk-doc
+rm -rf ${PREFIX}/share/locale
+rm -rf ${PREFIX}/share/doc
+rm -rf ${PREFIX}/share/info
+rm -rf ${PREFIX}/bin
+rm -rf ${PREFIX}/include
 
 # Compress all dependencies
 tar pczf ${DEPS_FILE} ${PREFIX}
