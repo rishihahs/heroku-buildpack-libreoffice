@@ -6,8 +6,8 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 # config
-VERSION="5.0.2"
-MINOR_VERSION="5.0"
+VERSION="5.2.1"
+MINOR_VERSION="5.2"
 
 # LibreOffice Binaries URL
 FILE_NAME=libreoffice${VERSION}_x86-64.tar.gz
